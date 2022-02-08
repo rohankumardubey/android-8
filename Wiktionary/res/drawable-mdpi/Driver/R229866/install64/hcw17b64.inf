@@ -1,0 +1,584 @@
+;------------------------------------------------------------------------
+;
+;   Copyright and Disclaimer:
+;
+;       ---------------------------------------------------------------
+;       This software is provided "as is" without warranty of any kind,
+;       either expressed or implied, including but not limited to the
+;       implied warranties of merchantability and/or fitness for a
+;       particular purpose.
+;
+;       Copyright (c) 2006-2008 Hauppauge Computer Works, Inc.
+;       All Rights Reserved.
+;       ---------------------------------------------------------------
+;
+;   Abstract:
+;
+;       This is the SMS1010 BDA capture driver inf file for x64 systems
+;
+;------------------------------------------------------------------------
+
+[Version]
+signature="$Windows NT$"
+Class=MEDIA
+ClassGUID={4d36e96c-e325-11ce-bfc1-08002be10318}
+Provider=%Sms%
+DriverVer=06/29/2009,4.2.10.27180
+CatalogFile.ntamd64=hcw17b64.cat
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[Manufacturer]
+%Sms%=Siano,NTamd64
+
+[Siano.NTamd64]
+;Blank
+;%sample.name%=smsbda1,USB\VID_187F&PID_0010,USB\VID_187F&PID_0010&MI_00,USB\VID_187F&PID_0010&MI_01
+;%sample.name%=smsbda1,USB\VID_187F&PID_0100,USB\VID_187F&PID_0100&MI_00,USB\VID_187F&PID_0100&MI_01
+;%sample.name%=smsbda2,USB\VID_187F,PID_0200
+;%sample.name%=smsbda2.1,USB\VID_187F&PID_0201
+;%sample.name%=smsbda3,USB\VID_187F&PID_0300
+
+;Catamount
+%catamount.name%=smsbda1,USB\VID_2040&PID_1700&MI_00
+%catamount.name%=smsbda1,USB\VID_2040&PID_1700
+
+;Okemo
+%sample.name%=smsbda2,USB\VID_2040&PID_1800
+%okemo.name%=smsbda2.1.dvbt,USB\VID_2040&PID_1801
+
+;Windham
+%ministick.name%=smsbda2.1.55009,USB\VID_2040&PID_5500
+%ministick.name%=smsbda2.1.55019,USB\VID_2040&PID_5510
+%aerot.name%=smsbda2.1.55109,USB\VID_2040&PID_5520
+%aerot.name%=smsbda2.1.55119,USB\VID_2040&PID_5530
+%dellreceiver.name%=smsbda2.1.dvbt,USB\VID_2040&PID_5580
+%dellreceiver.name%=smsbda2.1.isdbt,USB\VID_2040&PID_5590
+
+;SMS1150 Minicard
+%minicard.name%=smsbda2.1.20xxx.dvbt,USB\VID_2040&PID_2000
+%minicard.name%=smsbda2.1.20xxx.isdbt,USB\VID_2040&PID_2010
+%dellreceiver.name%=smsbda2.1.20xxx.dvbt.r2,USB\VID_2040&PID_2009
+%dellreceiver.name%=smsbda2.1.20xxx.dvbt,USB\VID_2040&PID_200a
+%dellreceiver.name%=smsbda2.1.20xxx.isdbt,USB\VID_2040&PID_2019
+;FIXME: 20011 / 20021
+%dellreceiver.name%=smsbda2.1.20xxx.dvbt,USB\VID_2040&PID_2011
+%dellreceiver.name%=smsbda2.1.20xxx.isdbt,USB\VID_2040&PID_2021
+
+;CMMB stick
+%aeroc.name%=smsbda3.114000,USB\VID_2040&PID_b400
+%dellreceiver.name%=smsbda3,USB\VID_2040&PID_b410
+
+;CMMB MiniCard
+%minicard.name%=smsbda3.115xxx,USB\VID_2040&PID_b500
+%dellreceiver.name%=smsbda3.115xxx.r1,USB\VID_2040&PID_b510
+%dellreceiver.name%=smsbda3.115xxx,USB\VID_2040&PID_b511
+;FIXME: 115012
+%dellreceiver.name%=smsbda3.115xxx,USB\VID_2040&PID_b512
+
+[smsbda1.NT]
+Include=ks.inf,kscaptur.inf,bda.inf
+Needs=KS.Registration.NT,KSCAPTUR.Registration.NT,BDA.Installation.NT
+CopyFiles=smsbda.files,smsctrllib.files,smsstellarfw.files
+AddReg=stellar.addreg,hcwLEDs.addreg,dvbt.addreg,hcwsiano.addreg
+
+[smsbda2.NT]
+Include=ks.inf,kscaptur.inf,bda.inf
+Needs=KS.Registration.NT,KSCAPTUR.Registration.NT,BDA.Installation.NT
+CopyFiles=smsbda.files,smsctrllib.files,smsnovaafw.files
+AddReg=nova_a0.addreg,nova_a0_fw.addreg,dvbt.addreg,hcwsiano.addreg
+
+[smsbda2.1.NT]
+Include=ks.inf,kscaptur.inf,bda.inf
+Needs=KS.Registration.NT,KSCAPTUR.Registration.NT,BDA.Installation.NT
+CopyFiles=smsbda.files,smsctrllib.files,smsnovabfw.files
+AddReg=nova_b0.addreg,nova_b0_fw.addreg,dvbt.addreg,hcwsiano.addreg
+
+[smsbda2.1.dvbt.NT]
+Include=ks.inf,kscaptur.inf,bda.inf
+Needs=KS.Registration.NT,KSCAPTUR.Registration.NT,BDA.Installation.NT
+CopyFiles=smsbda.files,smsctrllib.files,smsnovabfw.files
+AddReg=nova_b0.addreg,nova_b0_fw.addreg,dvbt.addreg,hcwsiano.addreg
+
+[smsbda2.1.isdbt.NT]
+Include=ks.inf,kscaptur.inf,bda.inf
+Needs=KS.Registration.NT,KSCAPTUR.Registration.NT,BDA.Installation.NT
+CopyFiles=smsbda.files,smsctrllib.files,smsnovabfw.files
+AddReg=nova_b0.addreg,nova_b0_fw.addreg,isdbt.addreg,hcwsiano.addreg
+
+[smsbda2.1.55009.NT]
+Include=ks.inf,kscaptur.inf,bda.inf
+Needs=KS.Registration.NT,KSCAPTUR.Registration.NT,BDA.Installation.NT
+CopyFiles=smsbda.files,smsctrllib.files,smsnovabfw.files
+AddReg=nova_b0.addreg,nova_b0_fw.addreg,hcwLEDs.addreg,windham.addreg,dvbt.addreg,hcwsiano.addreg
+
+[smsbda2.1.55019.NT]
+Include=ks.inf,kscaptur.inf,bda.inf
+Needs=KS.Registration.NT,KSCAPTUR.Registration.NT,BDA.Installation.NT
+CopyFiles=smsbda.files,smsctrllib.files,smsnovabfw.files
+AddReg=nova_b0.addreg,nova_b0_fw.addreg,hcwLEDs.addreg,windham.addreg,isdbt.addreg,hcwsiano.addreg
+
+[smsbda2.1.55109.NT]
+Include=ks.inf,kscaptur.inf,bda.inf
+Needs=KS.Registration.NT,KSCAPTUR.Registration.NT,BDA.Installation.NT
+CopyFiles=smsbda.files,smsctrllib.files,smsnovabfw.files
+AddReg=nova_b0.addreg,nova_b0_fw.addreg,hcwLEDs.addreg,windham.addreg,dvbt.addreg,hcwsiano.addreg
+
+[smsbda2.1.55119.NT]
+Include=ks.inf,kscaptur.inf,bda.inf
+Needs=KS.Registration.NT,KSCAPTUR.Registration.NT,BDA.Installation.NT
+CopyFiles=smsbda.files,smsctrllib.files,smsnovabfw.files
+AddReg=nova_b0.addreg,nova_b0_fw.addreg,hcwLEDs.addreg,windham.addreg,isdbt.addreg,hcwsiano.addreg
+
+[smsbda2.1.20xxx.dvbt.r2.NT]
+Include=ks.inf,kscaptur.inf,bda.inf
+Needs=KS.Registration.NT,KSCAPTUR.Registration.NT,BDA.Installation.NT
+CopyFiles=smsbda.files,smsctrllib.files,smsnovabfw.files
+AddReg=nova_b0.addreg,nova_b0_fw.addreg,dvbt.addreg,TigerAntennae.r2.addreg,hcwsiano.addreg
+
+[smsbda2.1.20xxx.dvbt.NT]
+Include=ks.inf,kscaptur.inf,bda.inf
+Needs=KS.Registration.NT,KSCAPTUR.Registration.NT,BDA.Installation.NT
+CopyFiles=smsbda.files,smsctrllib.files,smsnovabfw.files
+AddReg=nova_b0.addreg,nova_b0_fw.addreg,dvbt.addreg,TigerAntennae.addreg,TigerFWRFSwitch.addreg,hcwsiano.addreg
+
+[smsbda2.1.20xxx.isdbt.NT]
+Include=ks.inf,kscaptur.inf,bda.inf
+Needs=KS.Registration.NT,KSCAPTUR.Registration.NT,BDA.Installation.NT
+CopyFiles=smsbda.files,smsctrllib.files,smsnovabfw.files
+AddReg=nova_b0.addreg,nova_b0_fw.addreg,isdbt.addreg,TigerAntennae.addreg,TigerFWRFSwitch.addreg,hcwsiano.addreg
+
+[smsbda3.NT]
+Include=ks.inf,kscaptur.inf,bda.inf
+Needs=KS.Registration.NT,KSCAPTUR.Registration.NT,BDA.Installation.NT
+CopyFiles=smsbda.files,smsctrllib.files,smsvegafw.files
+AddReg=vega.addreg,cmmb.addreg,hcwsiano.addreg
+
+[smsbda3.114000.NT]
+Include=ks.inf,kscaptur.inf,bda.inf
+Needs=KS.Registration.NT,KSCAPTUR.Registration.NT,BDA.Installation.NT
+CopyFiles=smsbda.files,smsctrllib.files,smsvegafw.files
+AddReg=vega.addreg,cmmb.addreg,cmmbretail.addreg,hcwsiano.addreg
+
+[smsbda3.115xxx.r1.NT]
+Include=ks.inf,kscaptur.inf,bda.inf
+Needs=KS.Registration.NT,KSCAPTUR.Registration.NT,BDA.Installation.NT
+CopyFiles=smsbda.files,smsctrllib.files,smsvegafw.files
+AddReg=vega.addreg,cmmb.addreg,TigerCmmbAntennae.r1.addreg,hcwsiano.addreg
+
+[smsbda3.115xxx.NT]
+Include=ks.inf,kscaptur.inf,bda.inf
+Needs=KS.Registration.NT,KSCAPTUR.Registration.NT,BDA.Installation.NT
+CopyFiles=smsbda.files,smsctrllib.files,smsvegafw.files
+AddReg=vega.addreg,cmmb.addreg,TigerCmmbAntennae.addreg,TigerFWRFSwitch.addreg,hcwsiano.addreg
+
+[hcwsiano.addreg]
+HKLM,System\CurrentControlSet\Services\hcw17bda\Parameters,"RFSwitchCfg",0x00010001,0
+HKR,,"FwFirstRun",0x00010001,1
+
+[windham.addreg]
+;IR METHODS:
+; 0 - no IR
+; 1 - enable PIC CLK for MICRO IR over I2C
+; 2 - enable SIANO IR on dsp
+HKR,,"ir",0x00010001,2
+
+[cmmbretail.addreg]
+;IR METHODS:
+; 0 - no IR
+; 1 - enable PIC CLK for MICRO IR over I2C
+; 2 - enable SIANO IR on dsp
+HKR,,"ir",0x00010001,2
+HKR,,"Power",0x00010001,21
+HKR,,"Lo",0x00010001,17
+HKR,,"Hi",0x00010001,15
+
+[TigerAntennae.r2.addreg]
+HKR,,"LnaCtr",0x00010001,101
+
+[TigerAntennae.addreg]
+HKR,,"LnaCtr",0x00010001,29
+;r4 and later
+HKR,,"RFSwitch",0x00010001,17
+
+[TigerCmmbAntennae.r1.addreg]
+HKR,,"LnaCtr",0x00010001,10
+
+[TigerCmmbAntennae.addreg]
+HKR,,"LnaCtr",0x00010001,23
+;r2 and later
+HKR,,"RFSwitch",0x00010001,25
+
+[TigerFWRFSwitch.addreg]
+HKR,,"RFSwitchFWenabled",0x00010001,1
+
+[hcwLEDs.addreg]
+HKR,,"Power",0x00010001,26
+HKR,,"Lo",0x00010001,27
+HKR,,"Hi",0x00010001,28
+
+[dvbt.addreg]
+HKR,,"Mode",0x00010001,4
+HKLM,System\CurrentControlSet\Services\hcw17bda\Parameters,"PreventForcedFwReload",0x00010001,0
+
+[isdbt.addreg]
+HKR,,"Mode",0x00010001,6
+HKLM,System\CurrentControlSet\Services\hcw17bda\Parameters,"PreventForcedFwReload",0x00010001,0
+
+[cmmb.addreg]
+HKR,,"Mode",0x00010001,7
+HKLM,System\CurrentControlSet\Services\hcw17bda\Parameters,"PreventForcedFwReload",0x00010001,1
+
+[stellar.addreg]
+HKR,,"Cfg",0x00010001,1
+HKR,,"ImageFileDVBT_BDA",,"\systemroot\system32\drivers\hcw17dvb.f10"
+HKR,,"eewp",0x00010001,25
+
+[nova_a0.addreg]
+HKR,,"Cfg",0x00010001,2
+HKR,,"ImageFileDVBT_BDA",,"\systemroot\system32\drivers\hcw17dvb.1a0"
+HKR,,"eewp",0x00010001,25
+
+[nova_b0.addreg]
+HKR,,"Cfg",0x00010001,2
+HKR,,"ImageFileDVBT_BDA",,"\systemroot\system32\drivers\hcw17dvb.1b0"
+HKR,,"eewp",0x00010001,25
+
+[vega.addreg]
+HKR,,"Cfg",0x00010001,2
+HKR,,"ImageFile7",,"\systemroot\system32\drivers\hcw17cmb.8a0"
+HKR,,"eewp",0x00010001,22
+
+[nova_a0_fw.addreg]
+HKR,,"ImageFile0",,"\systemroot\system32\drivers\dvb_nova_12mhz.inp"
+HKR,,"ImageFile1",,"\systemroot\system32\drivers\dvb_nova_12mhz.inp"
+HKR,,"ImageFile2",,"\systemroot\system32\drivers\tdmb_nova_12mhz.inp"
+HKR,,"ImageFile3",,""
+;;HKR,,"ImageFile4",,"\systemroot\system32\drivers\dvb_nova_12mhz.inp"
+HKR,,"ImageFile4",,"\systemroot\system32\drivers\hcw17dvb.1a0"
+HKR,,"ImageFile5",,"\systemroot\system32\drivers\isdbt_nova_12mhz.inp"
+HKR,,"ImageFile6",,"\systemroot\system32\drivers\hcw17isd.1a0"
+HKR,,"ImageFile7",,"\systemroot\system32\drivers\cmmb_nova_12mhz.inp"
+HKR,,"ImageFile8",,""
+
+[nova_b0_fw.addreg]
+HKR,,"ImageFile0",,"\systemroot\system32\drivers\dvb_nova_12mhz.inp"
+HKR,,"ImageFile1",,"\systemroot\system32\drivers\dvb_nova_12mhz.inp"
+HKR,,"ImageFile2",,"\systemroot\system32\drivers\tdmb_nova_12mhz.inp"
+HKR,,"ImageFile3",,""
+;;HKR,,"ImageFile4",,"\systemroot\system32\drivers\dvb_nova_12mhz.inp"
+HKR,,"ImageFile4",,"\systemroot\system32\drivers\hcw17dvb.1b0"
+HKR,,"ImageFile5",,"\systemroot\system32\drivers\isdbt_nova_12mhz.inp"
+HKR,,"ImageFile6",,"\systemroot\system32\drivers\hcw17isd.1b0"
+HKR,,"ImageFile7",,"\systemroot\system32\drivers\cmmb_nova_12mhz.inp"
+HKR,,"ImageFile8",,""
+
+[smsctrllib.files]
+HcwSmsCt.dll
+
+[smsbda.files]
+hcw17bda.sys
+
+[smsstellarfw.files]
+hcw17dvb.f10
+
+[smsnovaafw.files]
+hcw17dvb.1a0
+hcw17isd.1a0
+
+[smsnovabfw.files]
+hcw17dvb.1b0
+hcw17isd.1b0
+
+[smsvegafw.files]
+hcw17cmb.8a0
+
+[DestinationDirs]
+smsbda.files=10,system32\drivers
+smsstellarfw.files=10,system32\drivers
+smsnovaafw.files=10,system32\drivers
+smsnovabfw.files=10,system32\drivers
+smsvegafw.files=10,system32\drivers
+smsctrllib.files=10,system32\drivers
+
+[SourceDisksFiles]
+hcw17bda.sys = 1234
+hcw17dvb.f10 = 123
+hcw17dvb.1a0 = 123
+hcw17dvb.1b0 = 123
+hcw17isd.1a0 = 123
+hcw17isd.1b0 = 123
+hcw17cmb.8a0 = 123
+HcwSmsCt.dll = 123
+
+[SourceDisksNames.amd64]
+123=%Disk_Description%,,,\Driver17
+1234=%Disk_Description%,,,\Driver17\64bit
+
+[smsbda1.NT.Interfaces]
+AddInterface = %KSCATEGORY_BDATUNER%, %smsdvbttuner.guid%, smsdvbttuner
+AddInterface = %KSCATEGORY_BDARECEIVER%, %smsbdacapture.guid%, smsbdacapture
+AddInterface = %KSCATEGORY_CAPTURE%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_VIDEO%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_DEVICECTL%, %hcwdevctrl.guid%, hcwdevctrl
+
+[smsbda2.NT.Interfaces]
+AddInterface = %KSCATEGORY_BDATUNER%, %smsdvbttuner.guid%, smsdvbttuner
+AddInterface = %KSCATEGORY_BDATUNER%, %smsisdbttuner.guid%, smsisdbttuner
+AddInterface = %KSCATEGORY_BDARECEIVER%, %smsbdacapture.guid%, smsbdacapture
+AddInterface = %KSCATEGORY_CAPTURE%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_VIDEO%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_DEVICECTL%, %hcwdevctrl.guid%, hcwdevctrl
+
+[smsbda2.1.NT.Interfaces]
+AddInterface = %KSCATEGORY_BDATUNER%, %smsdvbttuner.guid%, smsdvbttuner
+AddInterface = %KSCATEGORY_BDATUNER%, %smsisdbttuner.guid%, smsisdbttuner
+AddInterface = %KSCATEGORY_BDARECEIVER%, %smsbdacapture.guid%, smsbdacapture
+AddInterface = %KSCATEGORY_CAPTURE%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_VIDEO%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_DEVICECTL%, %hcwdevctrl.guid%, hcwdevctrl
+
+[smsbda2.1.dvbt.NT.Interfaces]
+AddInterface = %KSCATEGORY_BDATUNER%, %smsdvbttuner.guid%, smsdvbttuner
+AddInterface = %KSCATEGORY_BDATUNER%, %smsisdbttuner.guid%, smsisdbttuner
+AddInterface = %KSCATEGORY_BDARECEIVER%, %smsbdacapture.guid%, smsbdacapture
+AddInterface = %KSCATEGORY_CAPTURE%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_VIDEO%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_DEVICECTL%, %hcwdevctrl.guid%, hcwdevctrl
+
+[smsbda2.1.isdbt.NT.Interfaces]
+AddInterface = %KSCATEGORY_BDATUNER%, %smsdvbttuner.guid%, smsdvbttuner
+AddInterface = %KSCATEGORY_BDATUNER%, %smsisdbttuner.guid%, smsisdbttuner
+AddInterface = %KSCATEGORY_BDARECEIVER%, %smsbdacapture.guid%, smsbdacapture
+AddInterface = %KSCATEGORY_CAPTURE%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_VIDEO%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_DEVICECTL%, %hcwdevctrl.guid%, hcwdevctrl
+
+[smsbda2.1.55009.NT.Interfaces]
+AddInterface = %KSCATEGORY_BDATUNER%, %smsdvbttuner.guid%, smsdvbttuner
+AddInterface = %KSCATEGORY_BDATUNER%, %smsisdbttuner.guid%, smsisdbttuner
+AddInterface = %KSCATEGORY_BDARECEIVER%, %smsbdacapture.guid%, smsbdacapture
+AddInterface = %KSCATEGORY_CAPTURE%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_VIDEO%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_DEVICECTL%, %hcwdevctrl.guid%, hcwdevctrl
+
+[smsbda2.1.55019.NT.Interfaces]
+AddInterface = %KSCATEGORY_BDATUNER%, %smsdvbttuner.guid%, smsdvbttuner
+AddInterface = %KSCATEGORY_BDATUNER%, %smsisdbttuner.guid%, smsisdbttuner
+AddInterface = %KSCATEGORY_BDARECEIVER%, %smsbdacapture.guid%, smsbdacapture
+AddInterface = %KSCATEGORY_CAPTURE%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_VIDEO%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_DEVICECTL%, %hcwdevctrl.guid%, hcwdevctrl
+
+[smsbda2.1.55109.NT.Interfaces]
+AddInterface = %KSCATEGORY_BDATUNER%, %smsdvbttuner.guid%, smsdvbttuner
+AddInterface = %KSCATEGORY_BDATUNER%, %smsisdbttuner.guid%, smsisdbttuner
+AddInterface = %KSCATEGORY_BDARECEIVER%, %smsbdacapture.guid%, smsbdacapture
+AddInterface = %KSCATEGORY_CAPTURE%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_VIDEO%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_DEVICECTL%, %hcwdevctrl.guid%, hcwdevctrl
+
+[smsbda2.1.55119.NT.Interfaces]
+AddInterface = %KSCATEGORY_BDATUNER%, %smsdvbttuner.guid%, smsdvbttuner
+AddInterface = %KSCATEGORY_BDATUNER%, %smsisdbttuner.guid%, smsisdbttuner
+AddInterface = %KSCATEGORY_BDARECEIVER%, %smsbdacapture.guid%, smsbdacapture
+AddInterface = %KSCATEGORY_CAPTURE%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_VIDEO%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_DEVICECTL%, %hcwdevctrl.guid%, hcwdevctrl
+
+[smsbda2.1.20xxx.dvbt.r2.NT.Interfaces]
+AddInterface = %KSCATEGORY_BDATUNER%, %smsdvbttuner.guid%, smsdvbttuner
+AddInterface = %KSCATEGORY_BDATUNER%, %smsisdbttuner.guid%, smsisdbttuner
+AddInterface = %KSCATEGORY_BDARECEIVER%, %smsbdacapture.guid%, smsbdacapture
+AddInterface = %KSCATEGORY_CAPTURE%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_VIDEO%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_DEVICECTL%, %hcwdevctrl.guid%, hcwdevctrl
+
+[smsbda2.1.20xxx.dvbt.NT.Interfaces]
+AddInterface = %KSCATEGORY_BDATUNER%, %smsdvbttuner.guid%, smsdvbttuner
+AddInterface = %KSCATEGORY_BDATUNER%, %smsisdbttuner.guid%, smsisdbttuner
+AddInterface = %KSCATEGORY_BDARECEIVER%, %smsbdacapture.guid%, smsbdacapture
+AddInterface = %KSCATEGORY_CAPTURE%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_VIDEO%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_DEVICECTL%, %hcwdevctrl.guid%, hcwdevctrl
+
+[smsbda2.1.20xxx.isdbt.NT.Interfaces]
+AddInterface = %KSCATEGORY_BDATUNER%, %smsdvbttuner.guid%, smsdvbttuner
+AddInterface = %KSCATEGORY_BDATUNER%, %smsisdbttuner.guid%, smsisdbttuner
+AddInterface = %KSCATEGORY_BDARECEIVER%, %smsbdacapture.guid%, smsbdacapture
+AddInterface = %KSCATEGORY_CAPTURE%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_VIDEO%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_DEVICECTL%, %hcwdevctrl.guid%, hcwdevctrl
+
+[smsbda3.NT.Interfaces]
+;AddInterface = %KSCATEGORY_BDATUNER%, %smsdvbttuner.guid%, smsdvbttuner
+;AddInterface = %KSCATEGORY_BDATUNER%, %smsisdbttuner.guid%, smsisdbttuner
+AddInterface = %KSCATEGORY_BDARECEIVER%, %smsbdacapture.guid%, smsbdacapture
+AddInterface = %KSCATEGORY_CAPTURE%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_VIDEO%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_DEVICECTL%, %hcwdevctrl.guid%, hcwdevctrl
+
+[smsbda3.114000.NT.Interfaces]
+;AddInterface = %KSCATEGORY_BDATUNER%, %smsdvbttuner.guid%, smsdvbttuner
+;AddInterface = %KSCATEGORY_BDATUNER%, %smsisdbttuner.guid%, smsisdbttuner
+AddInterface = %KSCATEGORY_BDARECEIVER%, %smsbdacapture.guid%, smsbdacapture
+AddInterface = %KSCATEGORY_CAPTURE%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_VIDEO%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_DEVICECTL%, %hcwdevctrl.guid%, hcwdevctrl
+
+[smsbda3.115xxx.r1.NT.Interfaces]
+;AddInterface = %KSCATEGORY_BDATUNER%, %smsdvbttuner.guid%, smsdvbttuner
+;AddInterface = %KSCATEGORY_BDATUNER%, %smsisdbttuner.guid%, smsisdbttuner
+AddInterface = %KSCATEGORY_BDARECEIVER%, %smsbdacapture.guid%, smsbdacapture
+AddInterface = %KSCATEGORY_CAPTURE%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_VIDEO%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_DEVICECTL%, %hcwdevctrl.guid%, hcwdevctrl
+
+[smsbda3.115xxx.NT.Interfaces]
+;AddInterface = %KSCATEGORY_BDATUNER%, %smsdvbttuner.guid%, smsdvbttuner
+;AddInterface = %KSCATEGORY_BDATUNER%, %smsisdbttuner.guid%, smsisdbttuner
+AddInterface = %KSCATEGORY_BDARECEIVER%, %smsbdacapture.guid%, smsbdacapture
+AddInterface = %KSCATEGORY_CAPTURE%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_VIDEO%, %smscapture.guid%, smscapture
+AddInterface = %KSCATEGORY_DEVICECTL%, %hcwdevctrl.guid%, hcwdevctrl
+
+[hcwdevctrl]
+AddReg = hcwdevctrl.AddReg
+
+[hcwdevctrl.AddReg]
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%hcwdevctrl.name%
+
+;; Hauppauge API Support
+;HKLM,"Software\Hauppauge\HcwTVWnd","VCapFilter",0x4000,%smsdvbttuner.name%
+HKLM,"Software\Hauppauge\HcwTVWnd","VCapFilter",0x4000,%hcwdevctrl.name%
+
+[smsdvbttuner]
+AddReg = smsdvbttuner.AddReg
+
+[smsdvbttuner.AddReg]
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%smsdvbttuner.name%
+
+[smsisdbttuner]
+AddReg = smsisdbttuner.AddReg
+
+[smsisdbttuner.AddReg]
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%smsisdbttuner.name%
+
+[smsbdacapture]
+AddReg = smsbdacapture.AddReg
+
+[smsbdacapture.AddReg]
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%smsbdacapture.name%
+
+[smscapture]
+AddReg = smscapture.AddReg
+
+[smscapture.AddReg]
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%smscapture.name%
+
+[smsbda1.NT.Services]
+AddService=hcw17bda, 0x00000002, smsbda.ServiceInstall
+
+[smsbda2.NT.Services]
+AddService=hcw17bda, 0x00000002, smsbda.ServiceInstall
+
+[smsbda2.1.NT.Services]
+AddService=hcw17bda, 0x00000002, smsbda.ServiceInstall
+
+[smsbda2.1.dvbt.NT.Services]
+AddService=hcw17bda, 0x00000002, smsbda.ServiceInstall
+
+[smsbda2.1.isdbt.NT.Services]
+AddService=hcw17bda, 0x00000002, smsbda.ServiceInstall
+
+[smsbda2.1.55009.NT.Services]
+AddService=hcw17bda, 0x00000002, smsbda.ServiceInstall
+
+[smsbda2.1.55019.NT.Services]
+AddService=hcw17bda, 0x00000002, smsbda.ServiceInstall
+
+[smsbda2.1.55109.NT.Services]
+AddService=hcw17bda, 0x00000002, smsbda.ServiceInstall
+
+[smsbda2.1.55119.NT.Services]
+AddService=hcw17bda, 0x00000002, smsbda.ServiceInstall
+
+[smsbda2.1.20xxx.dvbt.r2.NT.Services]
+AddService=hcw17bda, 0x00000002, smsbda.ServiceInstall
+
+[smsbda2.1.20xxx.dvbt.NT.Services]
+AddService=hcw17bda, 0x00000002, smsbda.ServiceInstall
+
+[smsbda2.1.20xxx.isdbt.NT.Services]
+AddService=hcw17bda, 0x00000002, smsbda.ServiceInstall
+
+[smsbda3.NT.Services]
+AddService=hcw17bda, 0x00000002, smsbda.ServiceInstall
+
+[smsbda3.114000.NT.Services]
+AddService=hcw17bda, 0x00000002, smsbda.ServiceInstall
+
+[smsbda3.115xxx.r1.NT.Services]
+AddService=hcw17bda, 0x00000002, smsbda.ServiceInstall
+
+[smsbda3.115xxx.NT.Services]
+AddService=hcw17bda, 0x00000002, smsbda.ServiceInstall
+
+[smsbda.ServiceInstall]
+DisplayName=%smsbda.name%
+ServiceType=%SERVICE_KERNEL_DRIVER%
+StartType=%SERVICE_DEMAND_START%
+ErrorControl=%SERVICE_ERROR_NORMAL%
+ServiceBinary=%10%\system32\drivers\hcw17bda.sys
+LoadOrderGroup=ExtendedBase
+
+[Strings]
+
+;----------------
+; non-localizeable
+;----------------
+
+SERVICE_KERNEL_DRIVER=1
+SERVICE_DEMAND_START=3
+SERVICE_ERROR_NORMAL=1
+
+Proxy.CLSID="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSCATEGORY_BDARECEIVER="{FD0A5AF4-B41D-11d2-9C95-00C04F7971E0}"
+KSCATEGORY_BDATUNER="{71985F48-1CA1-11d3-9CC8-00C04F7971E0}"
+KSCATEGORY_CAPTURE="{65E8773D-8F56-11D0-A3B9-00A0C9223196}"
+KSCATEGORY_VIDEO="{6994AD05-93EF-11D0-A3CC-00A0C9223196}"
+KSCATEGORY_DEVICECTL="{cc7bfb46-f175-11d1-a392-00e0291f3959}"
+
+smsdvbttuner.guid="{76594675-42D1-46df-8478-001AA08DE1F2}"
+smsisdbttuner.guid="{76594676-42D1-46df-8478-6D38B6F6E5F1}"
+smsbdacapture.guid="{15D16EC1-E0A8-4de2-ABE3-001AA08DE1F2}"
+smscapture.guid="{15D16EC2-E0A8-4de2-ABE3-001AA08DE1F2}"
+hcwdevctrl.guid="{CC7BFB46-F175-11D1-A392-001AA08DE1F2}"
+
+;----------------
+; localizeable
+;----------------
+
+Sms="Hauppauge"
+smsbda.name="Hauppauge SMS1000-based"
+smsrom.name="WinTV-NOVA-TA (ROM)"
+catamount.name="WinTV-NOVA-TA (engineering sample)"
+sample.name="WinTV SMS11XX (engineering sample)"
+okemo.name="WinTV-NOVA"
+ministick.name="WinTV MiniStick"
+minicard.name="WinTV MiniCard"
+aeroc.name="WinTV Aero-C"
+aerot.name="WinTV Aero-T"
+dellreceiver.name="Dell Digital TV Receiver"
+smsdvbttuner.name="Hauppauge SMS1000 DVB-T Tuner"
+smsisdbttuner.name="Hauppauge SMS1000 ISDB-T Tuner"
+smsbdacapture.name="Hauppauge SMS1000 TS Capture"
+smscapture.name="WinTV-NOVA-TA TS Capture Filter"
+Disk_Description="WinTV-NOVA-TA Installation Disk"
+hcwdevctrl.name="Hauppauge SMS1000 Device Control Filter"
